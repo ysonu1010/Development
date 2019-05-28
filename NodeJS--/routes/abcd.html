@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <div id="display"></div>
+    </head>
+    <body>
+        
+        <script>
+            var xhr=new XMLHttpRequest();
+            xhr.addEventListener('load',function(){
+                console.log(1);
+             
+            });
+            xhr.open('GET','localhost:3000/user',true);
+            xhr.send();
+        </script>
+    </body>
+</html>
