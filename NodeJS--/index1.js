@@ -4,6 +4,7 @@ const user =require('./routes/user');
 const product =require('./routes/product');
 const parser =require('body-parser');
 const mongoose =require('mongoose');
+
 mongoose.connect("mongodb+srv://ysonu1010:12345@cluster0-3gl5b.mongodb.net/test?retryWrites=true",function(err){
     if(err){
         console.log(err);
@@ -12,6 +13,9 @@ mongoose.connect("mongodb+srv://ysonu1010:12345@cluster0-3gl5b.mongodb.net/test?
         console.log("Atlas connected");
     }
 });
+//connected mongoDB server
+
+
 //required to read body of request
 //otherwise body data doesnt show anything
 
