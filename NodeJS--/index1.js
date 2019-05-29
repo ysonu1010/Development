@@ -3,6 +3,15 @@ const morgan = require('morgan');
 const user =require('./routes/user');
 const product =require('./routes/product');
 const parser =require('body-parser');
+const mongoose =require('mongoose');
+mongoose.connect("mongodb+srv://ysonu1010:12345@cluster0-3gl5b.mongodb.net/test?retryWrites=true",function(err){
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log("Atlas connected");
+    }
+});
 //required to read body of request
 //otherwise body data doesnt show anything
 
@@ -20,6 +29,7 @@ app.use(parser.json());
 app.use(parser.urlencoded({extended:true}));
 //to read 'form' data from html
 
+  
 app.use('*',function(req,res,next){
     res.set('Access-Control-Allow-Origin','*');
     res.set('Access-Control-Allow-Headers','content-type');
