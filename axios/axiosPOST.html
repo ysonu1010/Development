@@ -1,0 +1,33 @@
+
+<html>
+    <head>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+              <meta charset="utf-8"/>
+    </head>
+    <body>
+        <script>
+            /*https://www.sitepoint.com/axios-beginner-guide/ ======>refer for additions parameers to send while post*/
+            
+            var body={ name: 'Waffle Iron', 
+            price: 21.50 };
+
+            var config= {
+                headers: {  'Content-Type': 'application/json;charset=UTF-8',
+                        "Access-Control-Allow-Origin": "*",
+                        'Access-Control-Allow-Headers':'content-type'
+                 }
+            };
+
+            axios.post('localhost:3000/user', body,config)
+            .then(function (response) {
+              console.log(response);
+            })
+            .catch(function (error) {
+            console.log(error);
+            });
+            
+        </script>
+        
+
+    </body>
+</html>

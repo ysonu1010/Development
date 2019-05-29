@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "nodemon index1.js"
-  }, 
-  
+    "start": "nodemon index1.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.17.1",
     "morgan": "^1.9.1"
   }
