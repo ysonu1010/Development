@@ -4,7 +4,7 @@ const user =require('./routes/user');
 const product =require('./routes/product');
 const parser =require('body-parser');
 const mongoose =require('mongoose');
-
+const userModal=require('./models/userModel');
 mongoose.connect("mongodb+srv://ysonu1010:12345@cluster0-3gl5b.mongodb.net/test?retryWrites=true",function(err){
     if(err){
         console.log(err);
