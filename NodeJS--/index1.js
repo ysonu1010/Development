@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const user =require('./routes/user');
 const product =require('./routes/product');
+const order =require('./routes/order');
 const parser =require('body-parser');
 //object of body-parser attends the body data
 const mongoose =require('mongoose');
@@ -52,6 +53,7 @@ app.use('*',function(req,res,next){
 
 app.use('/user',user);
 app.use('/product',product);
+app.use('/order',order);
 app.get('/',function(req,res){
     res.send('I am at home').status(200);
 });
