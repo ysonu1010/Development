@@ -31,7 +31,7 @@ router.post('/',function(req,res){
             res.json(newEntry).status(201);
         }
     });
-    res.send("Product Entered").status(400);
+   // res.send("Product Entered").status(400);
 });
 
  //retrieve product by ID
