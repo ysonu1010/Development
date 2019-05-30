@@ -8,3 +8,7 @@ const userSchema= mongoose.Schema({
 
 module.exports = mongoose.model('user',userSchema);
 //'user'===table name where data wll be stored
+//by mongoose.model('user',userSchema) ==>mongoose compiles an object for you
+//model is a distinct class in mongoose 
+//so we will create an instance of userModel in user.js to accept the data
+//from post body

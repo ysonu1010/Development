@@ -3,9 +3,11 @@ const morgan = require('morgan');
 const user =require('./routes/user');
 const product =require('./routes/product');
 const parser =require('body-parser');
+//object of body-parser attends the body data
 const mongoose =require('mongoose');
-const userModal=require('./models/userModel');
-mongoose.connect("mongodb+srv://ysonu1010:12345@cluster0-3gl5b.mongodb.net/test?retryWrites=true",function(err){
+const userModel=require('./models/userModel');
+const productModel=require('./models/productModel');
+mongoose.connect("mongodb+srv://ysonu1010:12345@cluster0-3gl5b.mongodb.net/test?retryWrites=true",{ useNewUrlParser: true },function(err){
     if(err){
         console.log(err);
     }
@@ -13,9 +15,9 @@ mongoose.connect("mongodb+srv://ysonu1010:12345@cluster0-3gl5b.mongodb.net/test?
         console.log("Atlas connected");
     }
 });
-//connected mongoDB server
+//connected mongoDB server for posting data received from Postman 
 
-
+//body-parser
 //required to read body of request
 //otherwise body data doesnt show anything
 
@@ -36,8 +38,11 @@ app.use(parser.urlencoded({extended:true}));
   
 app.use('*',function(req,res,next){
     res.set('Access-Control-Allow-Origin','*');
-    res.set('Access-Control-Allow-Headers','content-type');
+    res.set('Access-Control-Allow-Headers','content-type');//to remove CORS error
     next();
+    //next =>can be named anything same as third arguement of this function
+    //if next is not called, it doesn't execute any further code below 
+    //and doesn't send response back
 });
 //if gives following error in console:
 //Access to XMLHttpRequest at 'http://localhost:3000/user' 
@@ -50,6 +55,8 @@ app.use('/product',product);
 app.get('/',function(req,res){
     res.send('I am at home').status(200);
 });
+//res.send() is executed only once in a request
+//once done, it doesn't execute any further code
 app.listen(port,function(){
     console.log(`server listening on ${port}`);
 });
