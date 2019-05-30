@@ -8,7 +8,7 @@ router.get('/',function(req,res){
     // res.send('product module').status(200);
     orderModel.find()
     .populate('product') //we populate reference
-    .populate('user') //to populate user reference as well
+    .populate('user','-password') //to populate user reference as well, minus password, or('user','name')=>displayes just name
     .exec()
     .then(orders=>{
         res.json(orders).status(200);
