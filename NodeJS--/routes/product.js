@@ -33,6 +33,8 @@ router.post('/',function(req,res){
     });
    // res.send("Product Entered").status(400);
 });
+
+
 //to update the price of a product
 router.put('/:productID',function(req,res){
     const id=req.params.productID;
