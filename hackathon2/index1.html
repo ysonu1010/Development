@@ -134,13 +134,40 @@ body {
     <div class="row">
             <div class="column">
               <div class="card">card1
-                    <button type="button" class="block">Register for event</button>
+                    <button type="button" class="block" onclick="">Register for event</button>
               </div>
             </div>
-          </div>
+    </div>
     <!-- cards ends-->
 
 
+
+    <script>
+            var xhr=new XMLHttpRequest();
+            xhr.addEventListener('load',function(){
+              //  console.log(JSON.parse(this.responseText));
+              var k= (JSON.parse(this.responseText));
+              for(var i=0;i<10;i++){
+                var out=[k[i].leader,
+                k[i].trek_start,
+                k[i].trek.end,
+                k[i].meeting_address,
+                k[i].meeting_date,
+                k[i].meeting_time,
+                k[i].price ]
+                   console.log(k); 
+                   var li=document.createElement('li');
+                   li.innerHTML=`                      
+                   <p>Publisher: `+out[0]+`, title: `+out[1]+`Source: <a href=`+out[2]+`>`+out[2]+`</a>;
+                    </p>`
+                    
+                var list = document.getElementById("display");
+                list.insertBefore(li, list.childNodes[0]);
+              }  
+            });
+            xhr.open('GET','http://localhost:4000/events',true);
+            xhr.send();
+        </script>
    
 
 

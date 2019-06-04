@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
          <!-- Required meta tags -->
@@ -81,57 +82,44 @@ button:hover {
 
     <body>
         <!--Signup form starts-->
- <form  id="myForm" style="border:1px solid #ccc">
-        <div class="container">
-          <h1>Sign Up</h1>
-          <p>Please fill in this form to create an account.</p>
-          <hr>
+        <form style="border:1px solid #ccc">
+            <div class="container">
+                <h1>Sign Up</h1>
+                <p>Please fill in this form to create an account.</p>
+                
+                    
+                    <label><b>Name</b></label>
+                    <input type="text" id="leader" placeholder="Enter Your Name" name="leader" >
+
+                    <label><b>Trek Starting Point</b></label>
+                    <input type="text" id= "trek_start" placeholder="Enter Trek starting location" name="trek_start" >
+
+                    <label><b>Trek Ending Point</b></label>
+                    <input type="text" id= "trek_end" placeholder="Enter Trek ending location" name="trek_end" >
+
+
+
+                    <label><b>Enter the meeting date</b></label>
+                    <input type="text" id= "meeting_date" name="meeting_date" ><br><br>
+
+
+                    <label><b>Meeting Address</b></label>
+                    <input type="text" id= "meeting_address" placeholder="Enter the meeting address" name="meeting_address" >
+
+                    
+                    <label><b>Enter meeting time:   </b></label>
+                    <input type="text" id= "meeting_time" name="meeting_time" ><br><br>
+
+                    <label><b>Cost Per Head</b></label>
+                    <input type="number" id= "price" placeholder="Enter the cost per head" name="price" >
+
             
-          <label for="name"><b>Name</b></label>
-          <input type="text" placeholder="Enter Your Name" name="email" required>
-
-          <label for="location"><b>Trek Starting Point</b></label>
-          <input type="text" placeholder="Enter Trek starting location" name="start" required>
-
-          <label for="location"><b>Trek Ending Point</b></label>
-          <input type="text" placeholder="Enter Trek ending location" name="end" required>
-
-          <label for="location"><b>Meeting Address</b></label>
-          <input type="text" placeholder="Enter the meeting address" name="email" required>
-
-          <label for="avatar"><b>Choose A Picture Of Trek Location:  </b></label>
-          <input type="file" id="avatar" name="avatar"  accept="image/png, image/jpeg"><br><br>
-
-          <label for="Date"><b>Enter the start date</b></label>
-          <input type="date" name="date" required><br><br>
-
-          <label for="Date"><b>Enter meeting time:   </b></label>
-          <input type="time" name="time" required><br><br>
-
-          <label for="name"><b>Select Your Gender:  </b></label>
- 
-            male<input type="radio" name="g" value="m"/>
-            female<input type="radio" name="g" value="f"/>
-            <br><br>
-
-          <label for="email"><b>Email</b></label>
-          <input type="text" placeholder="Enter Email" name="email" required>
-      
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" required>
-      
-          <label for="psw-repeat"><b>Repeat Password</b></label>
-          <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-      
-          <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-      
-          <div class="clearfix">
+                    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
             
-           
-
-            <button type="submit" class="signupbtn" onclick="sendData();">Sign Up</button>
-          </div>
-        </div>
+               
+                    <input type="button" onclick="sendData();" value="Submit">
+                
+            </div>
       </form>
 <!--signup form ends-->
 
@@ -139,29 +127,24 @@ button:hover {
     //============================
     //=======SENDING SIGNUP DATA
           function sendData() {
-     let myForm = document.getElementById('myForm');
-    let formData = new FormData(myForm);
+               var xhr = new XMLHttpRequest();
+              console.log('jnvce');
 
-  var XHR = new XMLHttpRequest();
- 
-
-  
-  // Define what happens on successful data submission
-  XHR.addEventListener('load', function(event) {
-    alert('Yeah! Data Recorded. Please Login to continue.');
-  });
-
-  // Define what happens in case of error
-  XHR.addEventListener('error', function(event) {
-    alert('Oops! Something went wrong.');
-  });
-
-  // Set up our request
-  XHR.open('POST', 'https//localhost/3000/events');
-
-  // Send our FormData object; HTTP headers are set automatically
-  XHR.send(formData);
-}
+        // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                var leader = document.getElementById('leader').value;
+                var trek_start = document.getElementById('trek_start').value;
+                var trek_end = document.getElementById('trek_end').value;
+                
+                //var avatar=document.getElementById('avatar').value;
+                var meeting_date = document.getElementById('meeting_date').value;
+                var meeting_address = document.getElementById('meeting_address').value;
+                var meeting_time = document.getElementById('meeting_time').value;
+                //var mail=document.getElementById('mail').value;
+                var price = document.getElementById('price').value;
+                //console.log(name,start_add,end_add,meeting_add,meeting_date,meeting_time,price);                //var pwd=document.getElementById('pwd').value;
+                 xhr.open("POST", 'http://localhost:4000/event', true);
+                 xhr.send(`leader=${leader}&trek_start=${trek_start}&trek_end=${trek_end}&meeting_date=${meeting_date}&meeting_address=${meeting_address}&meeting_time=${meeting_time}&price=${price}`);
+         }
 ///==============SIGN UP DATA SENT
 
 

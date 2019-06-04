@@ -75,7 +75,7 @@ body {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
   padding: 16px;
-  text-align: center;
+  text-align: left;
   background-color: #f1f1f1;
 }
 
@@ -131,16 +131,10 @@ body {
     <!-- Cards for events-->
 
 
-    <div class="row">
-            <div class="column">
-              <div class="card">
-                    
-              </div>
-              <button type="button" class="block" onclick="">Register for event</button>
-            </div>
+    <div class="row" id="r1">
+            
     </div>
     <!-- cards ends-->
-
 
 
     <script>
@@ -158,12 +152,15 @@ body {
                 k[i].meeting_time,
                 k[i].price ] 
                 console.log(out);
-                  var li=document.createElement('li');
-                   li.innerHTML=`                      
-                   <p>Host: `+k[i].leader+``<br>` `+k[i].trek_start+` to `+k[i].trek.end+` `<br>` Meeting Point: `+k[i].meeting_address+` `<br>` Schedule: `+k[i].meeting_date+` `+k[i].meeting_time+` </p>`
-                    
-                var list = document.getElementById("card");
-                list.insertBefore(li, list.childNodes[0]);
+
+                  var li=document.createElement('div');
+                  li.className='column';
+                   li.innerHTML=`<div class ="card" id="card1"><p>Host: `+k[i].leader+`<br> `+k[i].trek_start+` to `+k[i].trek_end+` <br> Meeting Point: `+k[i].meeting_address+` <br> Schedule: `+k[i].meeting_date+` `+k[i].meeting_time+` </p></div><button type="button" class="block" onclick="">Register for event</button>`;   
+              //    console.log(`<p>Host: `+k[i].leader+`<br> `+k[i].trek_start+` to `+k[i].trek_end+` <br> Meeting Point: `+k[i].meeting_address+` <br> Schedule: `+k[i].meeting_date+` `+k[i].meeting_time+` </p>`);
+
+            var list = document.getElementById("r1");
+            list.insertBefore(li, list.childNodes[0]);
+               
             }
             });
             xhr.open('GET','http://localhost:4000/event',true);
