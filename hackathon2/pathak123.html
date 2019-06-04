@@ -133,9 +133,10 @@ body {
 
     <div class="row">
             <div class="column">
-              <div class="card">card1
-                    <button type="button" class="block" onclick="">Register for event</button>
+              <div class="card">
+                    
               </div>
+              <button type="button" class="block" onclick="">Register for event</button>
             </div>
     </div>
     <!-- cards ends-->
@@ -148,17 +149,22 @@ body {
               //  console.log(JSON.parse(this.responseText));
               var k= (JSON.parse(this.responseText));
               console.log(k); 
-              for(var i=0;i<10;i++){
+              for(var i=0;i<k.length;i++){
                 var out=[k[i].leader,
                 k[i].trek_start,
-                k[i].trek.end,
+                k[i].trek_end,
                 k[i].meeting_address,
                 k[i].meeting_date,
                 k[i].meeting_time,
                 k[i].price ] 
                 console.log(out);
+                  var li=document.createElement('li');
+                   li.innerHTML=`                      
+                   <p>Host: `+k[i].leader+``<br>` `+k[i].trek_start+` to `+k[i].trek.end+` `<br>` Meeting Point: `+k[i].meeting_address+` `<br>` Schedule: `+k[i].meeting_date+` `+k[i].meeting_time+` </p>`
+                    
+                var list = document.getElementById("card");
+                list.insertBefore(li, list.childNodes[0]);
             }
-
             });
             xhr.open('GET','http://localhost:4000/event',true);
             xhr.send();
@@ -167,6 +173,6 @@ body {
         </script>
    
 
-
+    
     </body>
 </html>
