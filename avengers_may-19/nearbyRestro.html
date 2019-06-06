@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Place Search Pagination</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+       
+      header {
+        background-color: rgba(34, 49, 52, 0.9);   
+      }
+      #head {
+          margin-top:20px;
+          margin-left: 270px;
+          position: relative;
+      }
+      #icon {
+        margin-top:15px;
+          margin-left:95px;
+          height:65px;
+          width: 65px;
+          border-radius:50%;
+         
+      }
+      #name {
+           
+          color:whitesmoke;
+          margin-top: 0px;
+          font-size: 35px;
+          font-style: inherit;
+          padding: 30px 15px 30px 15px;
+          position: absolute;
+         
+
+      }
+      
+      #b1 {
+        background-color: #555555;
+        border: 5px solid white;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+       text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-left:500px;
+      margin-top:20px;
+      position: absolute;
+      }
+
+      #map {
+        height: 50%;
+        width: 50%;
+        margin: 80px 30px 40px 50px;
+        position: absolute;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-image: url("1183962-healthy-food-wallpaper-1920x1080-for-android.jpg");
+            position: relative;
+            background-size:cover;
+          }
+      #right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #right-panel select, #right-panel input {
+        font-size: 15px;
+      }
+
+      #right-panel select {
+        width: 100%;
+      }
+
+      #right-panel i {
+        font-size: 12px;
+      }
+      #right-panel {
+        font-family: Arial, Helvetica, sans-serif;
+        position: absolute;
+        right: 5px;
+        top: 60%;
+        margin-top: -215px;
+        margin-right: 230px;
+        height: 330px;
+        width: 200px;
+        padding: 5px;
+        z-index: 5;
+        border: 1px solid #999;
+        background: #fff;
+      }
+      h2 {
+        font-size: 22px;
+        margin: 0 0 5px 0;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        height: 271px;
+        width: 200px;
+        overflow-y: scroll;
+      }
+      li {
+        background-color: #f1f1f1;
+        padding: 10px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      li:nth-child(odd) {
+        background-color: #fcfcfc;
+      }
+      #more {
+        width: 100%;
+        margin: 5px 0 0 0;
+      }
+    </style>
+    <script>
+      
+
+      var map;
+      var lat,long;
+
+      function initMap() {
+     navigator.geolocation.getCurrentPosition(showLoc); 
+function showLoc(pos){ 
+
+        var pyrmont = {lat: pos.coords.latitude, lng: pos.coords.longitude};
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: pyrmont,
+          zoom: 17
+        });
+        var marker = new google.maps.Marker({
+        position: pyrmont,
+        title:"Current Location!"
+         });
+
+
+         marker.setMap(map);
+        
+        var service = new google.maps.places.PlacesService(map);
+        var getNextPage = null;
+        var moreButton = document.getElementById('more');
+        moreButton.onclick = function() {
+          moreButton.disabled = true;
+          if (getNextPage) getNextPage();
+        };
+
+       
+        service.nearbySearch(
+            {location: pyrmont, radius: 500, type: ['restaurant']},
+            function(results, status, pagination) {
+              if (status !== 'OK') return;
+
+              createMarkers(results);
+              moreButton.disabled = !pagination.hasNextPage;
+              getNextPage = pagination.hasNextPage && function() {
+                pagination.nextPage();
+              };
+            });
+      }
+
+      function createMarkers(places) {
+        var bounds = new google.maps.LatLngBounds();
+        var placesList = document.getElementById('places');
+
+        for (var i = 0, place; place = places[i]; i++) {
+          var image = {
+            url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS--C9tH0UV0sef5Zae8h7FH9W69Hrw1EGiO--rArV8dDhgHibLAg",
+            size: new google.maps.Size(95, 95),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(40, 40)
+          };
+
+          var marker = new google.maps.Marker({
+            map: map,
+            icon: image,
+            title: place.name,
+            position: place.geometry.location
+          });
+
+          var li = document.createElement('li');
+          li.textContent = place.name;
+          placesList.appendChild(li);
+
+          bounds.extend(place.geometry.location);
+        }
+        map.fitBounds(bounds);
+      }
+      }
+    </script>
+  </head>
+  <body>
+      <header>
+          
+          <p id="head"><img id="icon" src="pinterest_profile_image.png" alt="Chef Icon"><span id="name">JE VOUDRIAS..</span><a href="recipes.html" target="_blank"><button id="b1">Recipes</button></a>
+           
+          </p>
+      </header>
+      <div id="back">
+    <div id="map"></div>
+    <div id="right-panel">
+      <h2>Results</h2>
+      <ul id="places"></ul>
+      <button id="more">More results</button>
+    </div>
+</div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMV4WRtFEIbzz3m33bHRsdQJlR6eK4aXc&libraries=places&callback=initMap" async defer></script>
+  </body>
+</html>

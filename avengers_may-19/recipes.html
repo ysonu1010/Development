@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recipes</title>
+        <style>
+          li {
+            list-style-type: none;
+          }   
+      header {
+        background-color: rgba(34, 49, 52, 0.9);  
+        height: 100px;
+        width: 100%; 
+        position: relative;
+      }
+      html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-image: url("1183962-healthy-food-wallpaper-1920x1080-for-android.jpg");
+            background-repeat: no-repeat;
+            object-fit: cover;
+          }
+      #head {
+          margin-top:20px;
+          margin-left: 300px;
+          color:whitesmoke;
+          font-size: 35px;
+          font-style: inherit;
+          padding: 30px 15px 30px 15px;
+         
+          
+         
+      }
+      #b1 {
+          position: absolute;
+        background-color: #555555;
+        border: 5px solid white;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+       text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-left:700px;
+
+      margin-bottom: 15px;
+          
+      }
+      #ddd {
+          font-size: 20px;
+      }
+
+     
+        </style>
+    </head>
+    <body>
+       <header>
+           <p id="head">Recipes<a href="nearbyRestro.html"><button id="b1">Home</button></a></p>
+       </header>
+       <div id="display">
+
+       </div>
+    </body>
+    <script>
+            let ch;
+            
+            let xhr= new XMLHttpRequest;
+            xhr.addEventListener('load',function(){
+                let k=JSON.parse(this.responseText);
+                for(var i=0;i<10;i++)
+                {
+                    var out=[k.recipes[i].publisher,
+                    k.recipes[i].f2f_url,k.recipes[i].item]
+                
+                console.log(k.recipes[i].publisher);
+                console.log(k.recipes[i].f2f_url);
+                var li=document.createElement('li');
+                li.innerHTML=`
+                <p id="ddd">Recipe Publisher : `+out[0]+`
+                
+                Source : <a href=`+out[1]+` target="_blank">`+out[1]+`<\a>
+                <p>`;
+
+                var list=document.getElementById('display');
+                list.insertBefore(li,list.childNodes[0]);
+                }
+                
+            })
+            xhr.addEventListener('error',function(){
+    
+            })
+            xhr.open('GET','https://www.food2fork.com/api/search?key=59425cb0caa64ab2b9ba70f36ac97305&q=+g+&page=2')
+            xhr.send();
+            
+            
+    
+        </script>
+</html>
