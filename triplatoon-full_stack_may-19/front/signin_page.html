@@ -3,7 +3,11 @@
          <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
         <style>
             /*signup form */
 /* Bordered form */
@@ -79,13 +83,51 @@ span.psw {
     width: 100%;
   }
 }
+.card-img{
+  
+  object-fit:cover;
+  width: 1840px;
+  height: 200px;
+}
 /* SIgnup form ends */ 
         </style>
-
+<title>TrekkIt - Event Hosts SignIn !</title>
     </head>
 
     <body>
+       
+        <div class="card1 bg-dark text-white">
+            <img class="card-img" src="header-trekking.jpg" alt="Card image">
+            <div class="card-img-overlay">
+         
+              <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text">Last updated 3 mins ago</p> -->
+            </div>
+          </div>
         <!--Signin form starts-->
+        <!-- The navigation bar starts -->
+    <!--  -->
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="./public/index.html">TrekkIt</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li ><a href="./index.html">Home</a></li>
+            
+            <li><a href="./public/store.html">TrekkIt Store</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="./signup_page.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="./signin_page.html"><span class="glyphicon glyphicon-log-in" class="active"></span> Login</a></li>
+          </ul>
+        </div>
+      </nav>
+        <!--  -->
+
+
+    <!-- The navigation bar ends-->
+      <br>
         <form action="action_page.php">
                 <div class="imgcontainer">
                           <img src="./avatar2.jpg" alt="Avatar" class="avatar">
@@ -104,9 +146,7 @@ span.psw {
                   
                 </div>
               
-                <div class="container" style="background-color:#f1f1f1">
-                            <a href="./index.html" type="button" class="cancelbtn" style="display: inline-block">Cancel</a>
-                </div>
+              
 
                 
               </form>
@@ -118,25 +158,17 @@ span.psw {
               var email = document.getElementById('email').value;
               var password = document.getElementById('password').value;
 
-              //get event id corresponding to email and password
-              var xhr1=new XMLHttpRequest();
-              xhr1.addEventListener('load',function(){
-              var k= (JSON.parse(this.responseText));
-              });
-              xhr1.open('GET',`http://localhost:4000/event/${email}`,true);
-              xhr1.send();
 
-
-              //open page as response to login
-              let xhr2 = new XMLHttpRequest();
-              let json = JSON.stringify({
-                  email:`${email}`,
-                  password:`${password}`
+               //open page as response to login
+               let xhr2 = new XMLHttpRequest();
+               xhr2.addEventListener('load',function(){
+                    var k= (JSON.parse(this.responseText));
+                    console.log(k);
               });
-              xhr2.open("POST", 'http://localhost:4000/event', true)
+              xhr2.open("GET", `http://localhost:4000/event/login?email=${email}&password=${password}`, true)
               xhr2.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-              xhr2.send(json);
-        
+              xhr2.send();
+
       }
             
 

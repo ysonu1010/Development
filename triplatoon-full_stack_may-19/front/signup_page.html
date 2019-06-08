@@ -2,9 +2,12 @@
 <html>
     <head>
          <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+         <meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        
         <style>
             /*signup form */
 * {box-sizing: border-box}
@@ -75,12 +78,50 @@ button:hover {
     width: 100%;
   }
 }
+.card-img{
+  
+  object-fit:cover;
+  width: 1840px;
+  height: 200px;
+}
 /* SIgnup form ends */ 
-        </style>
 
+        </style>
+<title>TrekkIt - SignUp to host an event !</title>
     </head>
 
     <body>
+        <div class="card1 bg-dark text-white">
+            <img class="card-img" src="header-trekking.jpg" alt="Card image">
+            <div class="card-img-overlay">
+         
+              <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text">Last updated 3 mins ago</p> -->
+            </div>
+          </div>
+      <!-- The navigation bar starts -->
+    <!--  -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="./index.html">TrekkIt</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li ><a href="./index.html">Home</a></li>
+            
+            <li><a href="./public/store.html">TrekkIt Store</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="./signup_page.html"><span class="glyphicon glyphicon-user" class="active"></span> Sign Up</a></li>
+            <li><a href="./signin_page.html"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+          </ul>
+        </div>
+      </nav>
+        <!--  -->
+
+
+    <!-- The navigation bar ends-->
+      <br>
         <!--Signup form starts-->
         <form style="border:1px solid #ccc">
             <div class="container">

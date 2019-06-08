@@ -33,6 +33,19 @@ newEvent.save(function(err,newEntry){
     }
 });
 }); 
+
+router.get('/login', function(req,res){
+    eventModel.findOne({email: req.query.email, password:req.query.password})
+    .exec()
+    .then(data=>{
+        res.json(data).sendStatus(200);
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+});
+
+
 router.get('/:eventId',function(req,res){
     const id = req.params.eventId;
     eventModel.find({_id:id})
@@ -54,7 +67,13 @@ router.put('/:eventid',function(req,res){
         console.log(err);
     });
 });
-
+router.get('/',function(req,res){
+    eventModel.find()
+    .exec()
+    .then(result=>{
+        res.json(result);
+    })
+    });
 router.get('/:leaderName',function(req,res){
     const ledr=req.params.leaderName;
     eventModel.find({leader: ledr})

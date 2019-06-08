@@ -3,7 +3,10 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
 
     /*=====/* The navigation menu */
@@ -99,6 +102,12 @@ body {
   cursor: pointer;
   text-align: center;
 }
+.card-img{
+  object-fit:cover;
+  width: 1840px;
+  height: 200px;
+
+}
 /* BOX BUTTONS ends  */
 
 /* ========BOXES ENDS================*/
@@ -107,25 +116,46 @@ body {
 
 
     </style>
-  
-    <title>Happy trekking !</title>
+    <title>TrekkIt - Happy Trekking ! !</title>
+
   </head>
 
 
 
   <body>
-    <h1>Happy trekking !</h1>
+      <div class="card1 bg-dark text-white">
+          <img class="card-img" src="header-trekking.jpg" alt="Card image">
+          <div class="card-img-overlay">
+       
+            <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text">Last updated 3 mins ago</p> -->
+          </div>
+        </div>
     <!-- Top navigation bar -->
     <!-- Load font awesome icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- The navigation bar starts -->
-<div id="navbar">
-        <a href="#home">Home</a>
-        <a href="./signup_page.html">SignUp</a>
-        <a href="./signin_page.html">SignIn</a>
-        <a href="./rent.html">Rent Equipments</a>
-      </div>
+    <!--  -->
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="./index.html">TrekkIt</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="./index.html">Home</a></li>
+            
+            <li><a href="./public/store.html">TrekkIt Store</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="./signup_page.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="./signin_page.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          </ul>
+        </div>
+      </nav>
+        <!--  -->
+
+
     <!-- The navigation bar ends-->
       <br>
     <!-- Cards for events-->
