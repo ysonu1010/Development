@@ -183,10 +183,24 @@ body {
                 k[i].price,
                 k[i].joinerscount ] 
                 console.log(out);
-
+                var image=k[i].eventImage;
+                var url1="http://localhost:4000/uploads/"
+                var url=url1+`${image}`;
                   var li=document.createElement('div');
                   li.className='column';
-                   li.innerHTML=`<div class ="card" id="card1"><p>Event_Id: `+k[i]._id+`<br> Host: `+k[i].leader+`<br> `+k[i].trek_start+` to `+k[i].trek_end+` <br> Meeting Point: `+k[i].meeting_address+` <br> Schedule: `+k[i].meeting_date+` `+k[i].meeting_time+` <br> Number of people in group: `+k[i].joinerscount+`</p></div><a href="./register.html"" type="button" class="block">Register for the event</a>`;   
+                   li.innerHTML=`<div class ="card" id="card1">
+                                    <img src=`+url+` alt="Smiley face" height="200" width="400">
+                                    <p>Event_Id: `+k[i]._id+`<br>
+                                          Host: `+k[i].leader+`<br>
+                                          `+k[i].trek_start+` to `+k[i].trek_end+` <br>
+                                          Meeting Point: `+k[i].meeting_address+` <br>
+                                          Schedule: `+k[i].meeting_date+` `+k[i].meeting_time+` <br>
+                                          Number of people in group: `+k[i].joinerscount+`
+                                    </p>
+                                </div>
+                                <a href="./register.html"" type="button" class="block">
+                                Register for the event
+                                </a>`;   
               //    console.log(`<p>Host: `+k[i].leader+`<br> `+k[i].trek_start+` to `+k[i].trek_end+` <br> Meeting Point: `+k[i].meeting_address+` <br> Schedule: `+k[i].meeting_date+` `+k[i].meeting_time+` </p>`);
 
             var list = document.getElementById("r1");
